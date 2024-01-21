@@ -5,6 +5,7 @@
 #include <string>
 
 #include "lexer.hpp"
+#include "parser.hpp"
 
 struct ProgramInput {
     char* input_filename;
@@ -32,9 +33,7 @@ int main(int argc, char** argv) {
 
     Lexer lexer(input);
 
-    for (auto& token : lexer.tokens) {
-        std::cout << token.type << ", " << token.value.value_or("null") << "\n";
-    }
+    Parser parser(lexer.tokens);
 
     return 0;
 }

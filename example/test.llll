@@ -1,1 +1,1 @@
-let my_var = 5;
+let my_var = 9 + 2 * 5;

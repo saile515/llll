@@ -4,4 +4,10 @@ project("llll"
         VERSION "0.1.0"
         LANGUAGES CXX)
 
-add_executable(llll src/main.cpp src/lexer.cpp src/lexer.hpp)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE "Debug")
+endif()
+
+add_executable(llll src/main.cpp src/lexer.cpp src/lexer.hpp src/parser.cpp src/parser.hpp)
