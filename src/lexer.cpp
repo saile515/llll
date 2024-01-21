@@ -1,7 +1,6 @@
 #include "lexer.hpp"
 
 #include <cctype>
-#include <iostream>
 #include <unordered_map>
 
 static std::unordered_map<std::string, TokenType> keyword_to_token_map{

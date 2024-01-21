@@ -22,7 +22,9 @@ enum TokenType {
     String,
     Let,
     Identifier,
-    Semicolon
+    Semicolon,
+    OpenParentheses,
+    CloseParentheses
 };
 
 struct Token {
