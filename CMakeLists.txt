@@ -10,4 +10,4 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE "Debug")
 endif()
 
-add_executable(llll src/main.cpp src/lexer.cpp src/lexer.hpp src/parser.cpp src/parser.hpp)
+add_executable(llll src/main.cpp src/lexer.hpp src/parser.hpp)

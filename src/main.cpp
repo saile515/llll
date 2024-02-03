@@ -4,6 +4,7 @@
 #include <sstream>
 #include <string>
 
+#include "generator.hpp"
 #include "lexer.hpp"
 #include "parser.hpp"
 
@@ -34,6 +35,21 @@ int main(int argc, char** argv) {
     Lexer lexer(input);
 
     Parser parser(lexer.tokens);
+
+    Generator generator(parser.global_body);
+
+    std::ofstream output_file(program_input.output_filename +
+                              std::string(".asm"));
+    output_file << generator.output.str();
+    output_file.close();
+
+    std::stringstream build_command;
+    build_command << "nasm -felf64 " << program_input.output_filename
+                  << ".asm -o " << program_input.output_filename << ".o && ld "
+                  << program_input.output_filename << ".o -o"
+                  << program_input.output_filename;
+
+    system(build_command.str().c_str());
 
     return 0;
 }
