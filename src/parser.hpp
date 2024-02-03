@@ -1,6 +1,7 @@
 #pragma once
 
 #include "lexer.hpp"
+#include <iostream>
 #include <memory>
 #include <optional>
 #include <string>
@@ -85,19 +86,24 @@ private:
 
                 if (tokens[i].type == TokenType::OpenParentheses) {
                     int offset = 1;
-                    int open = 0; // Start at 0 since check happens before
+                    int open = 1; // Start at 0 since check happens before
                                   // increment of last closing parentheses.
                     int close = 0;
 
-                    while (tokens[i + offset].type !=
-                               TokenType::CloseParentheses ||
-                           open == close) {
+                    while (true) {
+                        if (tokens.size() < i + offset) {
+                            exit(1);
+                        }
+
                         if (tokens[i + offset].type ==
                             TokenType::OpenParentheses) {
                             open++;
                         } else if (tokens[i + offset].type ==
                                    TokenType::CloseParentheses) {
                             close++;
+                            if (open == close) {
+                                break;
+                            }
                         }
                         offset++;
                     }
@@ -105,7 +111,7 @@ private:
                     if (max_precedence == precedence) {
                         std::vector<Token> enclosed_tokens(
                             tokens.begin() + i + 1,
-                            tokens.begin() + i + offset - 1);
+                            tokens.begin() + i + offset);
                         return expression_from_tokens(enclosed_tokens);
                     }
 

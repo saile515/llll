@@ -134,7 +134,7 @@ private:
                             break;
                         }
                     }
-                } else if (peek().has_value() && peek().value() == '*') {
+                } else if (peek().has_value() && peek().value() == '/') {
                     while (true) {
                         auto next_char = consume();
                         if (next_char.has_value() &&
@@ -161,6 +161,10 @@ private:
                 tokens.push_back({ TokenType::Integer, integer });
             } else if (character.value() == ';') {
                 tokens.push_back({ TokenType::Semicolon });
+            } else if (character.value() == '(') {
+                tokens.push_back({ TokenType::OpenParentheses });
+            } else if (character.value() == ')') {
+                tokens.push_back({ TokenType::CloseParentheses });
             }
         }
     }

@@ -1,1 +1,8 @@
-let my_var = 9 + 2 * 5;
+// Hello World!
+
+/* Hello
+   Multiline
+   Comment
+*/
+
+let my_var = (9 + 2) * 18 / 3;

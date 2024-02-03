@@ -69,6 +69,7 @@ public:
                         generator.pop("rax");
                         generator.output << "    div rcx\n";
                         generator.push("rax");
+                        break;
                     default:
                         exit(1);
                 }
